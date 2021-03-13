@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches:
+      - dca
+jobs:
+  docker:
+    runs-on: ubuntu-18.04
+    steps:
+      -
+        name: checkout
+        uses: actions/checkout@v2
+      -
+        name: test
+        run: |
+          set -x
+          docker build -t academiaonline/phpinfo:test .
+          docker run -d --name phpinfo -p 80:8080 academiaonline/phpinfo:test
+          while true
+            do  sleep 10
+                docker logs phpinfo | grep "PHP.*Development Server.*started" && break
+            done
+          while true
+            do  sleep 10
+                curl localhost | grep "PHP.*phpinfo()" && break
+            done
+              
+          
+         
