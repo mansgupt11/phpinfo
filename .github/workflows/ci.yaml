@@ -22,7 +22,7 @@ jobs:
             done
           while true
             do  sleep 10
-                curl localhost | grep "PHP.*phpinfo()" && break
+                curl -s localhost | grep "PHP.*phpinfo()" && break
             done
               
           
