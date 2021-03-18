@@ -14,8 +14,8 @@ jobs:
         name: test
         run: |
           set -x
-          docker build -t academiaonline/phpinfo:test .
-          docker run -d --name phpinfo -p 80:8080 academiaonline/phpinfo:test
+          docker build -t mansig11/phpinfo:test .
+          docker run -d --name phpinfo -p 80:8080 mansig11/phpinfo:test
           while true
             do  sleep 10
             docker logs phpinfo 2>& 1 | grep 'PHP .* Development Server .* started' && break
